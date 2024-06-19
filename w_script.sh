@@ -30,6 +30,14 @@ do
     if [[ $program == calc_s_* ]]; then
         # Sequential programs, executed with -np 1
         output=$(mpiexec -machinefile ./1_node_with_8_process -np 1 "./${base_name}_c" $base_npoints)
+                # Extract data from the output and append to the CSV file
+        pi=$(echo "$output" | grep -o "Liczba PI obliczona metoda Monte Carlo: [0-9.]*" | awk '{print $NF}')
+        points=$(echo "$output" | grep -o "Liczba punktów: [0-9]*" | awk '{print $NF}')
+        time=$(echo "$output" | grep -o "Czas wykonania: [0-9.]*" | awk '{print $NF}')
+        processors=$(echo "$output" | grep -o "Liczba użytych procesorów: [0-9]*" | awk '{print $NF}')
+        if [[ -n "$pi" && -n "$points" && -n "$time" && -n "$processors" ]]; then
+            echo "$pi, $points, $time, $processors" >> results_w.csv
+        fi
     else
         # Parallel programs, executed with varying numbers of processors from 2 to 8
         for np in {2..8}
