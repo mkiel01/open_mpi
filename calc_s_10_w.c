@@ -4,7 +4,7 @@
 
 
 
-int main() {
+int main(int argc, char *argv[]) {
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <number_of_points>\n", argv[0]);
         return 1;
