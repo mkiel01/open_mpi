@@ -10,7 +10,7 @@ int main() {
     double xcoordinate, ycoordinate;
     clock_t start, end;
     double cpu_time_used;
-
+    int size = 1;
     // Inicjalizacja generatora liczb pseudolosowych
     srand(time(NULL));
 
@@ -42,6 +42,7 @@ int main() {
 
     printf("Liczba punktów: %ld\n", npoints); // Dodatkowy wiersz wydruku
     printf("Czas wykonania: %f sekund\n", cpu_time_used);
+    printf("Liczba użytych procesorów: %d\n", size);
 
     return 0;
 }
