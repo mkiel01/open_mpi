@@ -23,7 +23,7 @@ do
 
     if [[ $program == calc_s_* ]]; then
    
-        output=$(mpiexec -machinefile ./1_node_with_8_process -np 1 "./${base_name}_c")
+        output=$(mpiexec -np 1 "./${base_name}_c")
     
         pi=$(echo "$output" | grep -o "Liczba PI obliczona metoda Monte Carlo: [0-9.]*" | awk '{print $NF}')
         points=$(echo "$output" | grep -o "Liczba punktów: [0-9]*" | awk '{print $NF}')
@@ -37,7 +37,7 @@ do
   
         for np in {2..8}
         do
-            output=$(mpiexec -machinefile ./1_node_with_8_process -np "$np" "./${base_name}_c")
+            output=$(mpiexec -np "$np" "./${base_name}_c")
         
             pi=$(echo "$output" | grep -o "Liczba PI obliczona metoda Monte Carlo: [0-9.]*" | awk '{print $NF}')
             points=$(echo "$output" | grep -o "Liczba punktów: [0-9]*" | awk '{print $NF}')
