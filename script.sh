@@ -1,6 +1,7 @@
-#!/bin/bash
 
-# Define the array of source files for parallel and sequential execution
+
+echo "Starting the script to compile and run MPI programs..."
+
 all_programs=(calc_p_1.c calc_p_10.c calc_p_60.c calc_s_1.c calc_s_10.c calc_s_60.c)
 
 # Initialize or clear the CSV file
